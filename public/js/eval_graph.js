@@ -1,42 +1,31 @@
-//setting up empty data array
-var data = [];
+const init = () => {
+  //setting up empty data array
+  var data = [];
 
-getData(); // popuate data
+  getData(); // popuate data
 
-// line chart based on http://bl.ocks.org/mbostock/3883245
-var margin = {
-        top: 20,
-        right: 20,
-        bottom: 30,
-        left: 50
-    },
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-function getData() {
-
-// loop to populate data array with
-// probabily - quantile pairs
-for (var i = 0; i < 100000; i++) {
-    q = normal() // calc random draw from normal dist
-    p = gaussian(q) // calc prob of rand draw
-    el = {
+  function getData() {
+    // loop to populate data array with
+    // probabily - quantile pairs
+    for (var i = 0; i < 100000; i++) {
+      q = normal() // calc random draw from normal dist
+      p = gaussian(q) // calc prob of rand draw
+      el = {
         "q": q,
         "p": p
-    }
-    data.push(el)
-};
+      }
+      data.push(el)
+    };
+    // need to sort for plotting
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+    data.sort(function(x, y) {
+        return x.q - y.q;
+    });
+  }
 
-// need to sort for plotting
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-data.sort(function(x, y) {
-    return x.q - y.q;
-});
-}
-
-// from http://bl.ocks.org/mbostock/4349187
-// Sample from a normal distribution with mean 0, stddev 1.
-function normal() {
+  // from http://bl.ocks.org/mbostock/4349187
+  // Sample from a normal distribution with mean 0, stddev 1.
+  function normal() {
     var x = 0,
         y = 0,
         rds, c;
@@ -47,23 +36,36 @@ function normal() {
     } while (rds == 0 || rds > 1);
     c = Math.sqrt(-2 * Math.log(rds) / rds); // Box-Muller transform
     return x * c; // throw away extra sample y * c
-}
+  }
 
-//taken from Jason Davies science library
-// https://github.com/jasondavies/science.js/
-function gaussian(x) {
-	var gaussianConstant = 1 / Math.sqrt(2 * Math.PI),
-		mean = 0,
-    	sigma = 1;
-
+  //taken from Jason Davies science library
+  // https://github.com/jasondavies/science.js/
+  function gaussian(x) {
+    var gaussianConstant = 1 / Math.sqrt(2 * Math.PI),
+        mean = 0,
+        sigma = 1;
     x = (x - mean) / sigma;
     return gaussianConstant * Math.exp(-.5 * x * x) / sigma;
-};
+  };
+
+  return data;
+}
 
 
 
 
 $(document).ready(() => {
+  let data = init();
+  // line chart based on http://bl.ocks.org/mbostock/3883245
+  var margin = {
+          top: 20,
+          right: 20,
+          bottom: 30,
+          left: 50
+      };
+  var width = 800 - margin.left - margin.right; //TODO dynamically get width
+  var height = 500 - margin.top - margin.bottom;
+  
   var x = d3.scale.linear()
       .range([0, width]);
 
