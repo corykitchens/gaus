@@ -1,0 +1,119 @@
+html, body {
+  min-height: 100%; }
+
+body {
+  background-color: #DDE0E5;
+  font-family: 'Lucida Grande', sans-serif;
+  color: #383838; }
+
+.header {
+  min-height: 100px;
+  background-color: #FFF;
+  border-bottom: 1px solid #979797; }
+
+.branding-header {
+  background-color: #3498DB;
+  min-height: 100px; }
+
+.main-content {
+  background-color: #F5F5F6;
+  border-bottom: 1px solid #979797;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  margin-top: 2em; }
+
+.main-content-panel-header {
+  min-height: 100px;
+  border-bottom: 1px #979797; }
+
+.header-icon {
+  border-right: 1px solid #979797;
+  padding: 1em; }
+
+.header-user {
+  background-color: red; }
+
+.header-user-name > p, strong {
+  padding: 1em;
+  line-height: 0.5em; }
+
+.student-profile-avatar {
+  width: 75%;
+  margin: 0 0 0 5em;
+  border: 1px solid #979797; }
+
+#eval-graph {
+  margin: 0 auto; }
+
+.nav-item > .nav-link.active {
+  border-top: 5px solid #F7CA18; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges; }
+
+.line {
+  fill: #26C6DA;
+  stroke: steelblue;
+  stroke-width: 1.5px; }
+
+.search-box {
+  padding: 1em 0.5em 2em 0;
+  min-height: 100%; }
+
+.circle-mc {
+  fill-opacity: 1;
+  stroke-width: 4;
+  fill: #1B5E20;
+  stroke: #1B5E20; }
+
+.circle-wiat {
+  fill-opacity: 1;
+  stroke-width: 4;
+  fill: #E65100;
+  stroke: #E65100; }
+
+.circle-wais {
+  fill-opacity: 1;
+  stroke-width: 4;
+  fill: #3F51B5;
+  stroke: #3F51B5; }
+
+.form-btn {
+  margin: 1em 0 1em 0; }
+
+.nav-item {
+  border-right: 1px solid #979797;
+  width: 19%; }
+
+.nav-item:last-child {
+  border-right: none; }
+
+.sidebar-brand {
+  background-color: #3498DB;
+  color: #F5F5F6;
+  text-align: center;
+  text-indent: -10; }
+
+.sidebar-nav > .sidebar-brand a {
+  color: #F5F5F6; }
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #F5F5F6;
+  background: none; }
+
+.sidebar-nav > .sidebar-brand li {
+  color: pink; }
+
+.assessment-heading {
+  padding: 1em 0 0 0.5em; }
+
+.assessment-form {
+  padding: 1em; }
+
+.sidebar-nav-item a {
+  color: #F5F5F6;
+  padding: 1em 0 1em 0; }
+
+/*# sourceMappingURL=main.css.map */

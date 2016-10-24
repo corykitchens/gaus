@@ -1,0 +1,172 @@
+$main-content-bg: #DDE0E5;
+$branding-bg: #3498DB;
+$secondary-color: #F7CA18; 
+
+$off-white: #F5F5F6;
+
+$stripe-even: #ddd;
+$stripe-odd: $off-white; 
+
+$text-color: #383838;
+$grey-border: #979797;
+
+
+html,body {
+    min-height: 100%;
+}
+
+body {
+    background-color: $main-content-bg;
+    font-family: 'Lucida Grande', sans-serif;
+    color: $text-color;
+}
+
+.header {
+    min-height: 100px;
+    background-color: #FFF;
+    border-bottom: 1px solid $grey-border;
+}
+
+.branding-header{
+    background-color: $branding-bg;
+    min-height: 100px;
+}
+
+.main-content {
+    background-color: $off-white;
+    border-bottom: 1px solid $grey-border;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+    margin-top: 2em;
+}
+
+.main-content-panel-header {
+    min-height: 100px;
+    border-bottom: 1px $grey-border;
+}
+
+
+.header-icon {
+    border-right: 1px solid $grey-border;
+    padding: 1em;
+}
+.header-icons {
+
+}
+
+.header-user {
+    background-color: red;
+}
+
+.header-user-name > p, strong {
+    padding: 1em;
+    line-height: 0.5em;
+}
+
+.student-profile-avatar {
+    width: 75%;
+    margin: 0 0 0 5em;
+    border: 1px solid $grey-border;
+    
+}
+
+#eval-graph {
+    margin: 0 auto;
+
+}
+
+.nav-item > .nav-link.active {
+    border-top: 5px solid $secondary-color;
+}
+
+.axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+.line {
+    fill: #26C6DA;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+
+.search-box {
+ 
+    padding: 1em 0.5em 2em 0;
+    min-height: 100%;
+}
+
+.pagination-box {
+ 
+}
+
+// Create mixin to inclue to DRY up code
+.circle-mc {
+    fill-opacity: 1;
+    stroke-width: 4;
+    fill: #1B5E20;
+    stroke: #1B5E20;
+}
+
+.circle-wiat {
+    fill-opacity: 1;
+    stroke-width: 4;
+    fill: #E65100;
+    stroke: #E65100;
+}
+
+.circle-wais {
+    fill-opacity: 1;
+    stroke-width: 4;
+    fill: #3F51B5;
+    stroke: #3F51B5;
+}
+
+.form-btn {
+  margin: 1em 0 1em 0;
+}
+
+.nav-item {
+    border-right: 1px solid $grey-border;
+    width: 19%;
+}
+
+.nav-item:last-child {
+    border-right: none;
+}
+
+
+.sidebar-brand {
+    background-color: $branding-bg;
+    color: $off-white;
+    text-align: center;
+    text-indent: -10;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: $off-white;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: $off-white;
+    background: none;
+}
+
+.sidebar-nav > .sidebar-brand li {
+    color: pink;
+}
+
+.assessment-heading {
+    padding: 1em 0 0 0.5em;
+}
+.assessment-form {
+    padding: 1em;
+}
+
+.sidebar-nav-item a {
+    color: $off-white;
+    padding: 1em 0 1em 0;
+}
+
+#eval-graph {
+}
