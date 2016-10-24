@@ -1,46 +1,16 @@
 <div ng-controller="studentProfileController">
-  <div>
-    <ul class="tabs">
-      <li>
-        <a href="#/student?id={{student._id}}">
-          Profile
-        </a>
-      </li>
-      <li>
-        <a href="#/student/eval?id={{student._id}}">
-          Evaluations
-        </a>
-      </li>
-      <li>
-        <a href="#/student/test?type=wiat&student={{student._id}}">
-          WIAT-III
-        </a>
-      </li>
-      <li>
-        <a href="#/student/test?type=microcog&student={{student._id}}">
-          MicroCog
-        </a>
-      </li>
-      <li>
-        <a href="#/student/test?type=wais&student={{student._id}}">
-          WAIS-IV
-        </a>
-      </li>
-    </ul>
-  </div>
-  <h1>{{message}}</h1>
-  <div class="row">
-    <div class="col-md-12">
-      <form action="" class="form-group">
-        <label for="">First Name: </label>
-        <input type="text" ng-model="student.fname" class="form-control">
-        <label for="">Last Name: </label>
-        <input type="text" ng-model="student.lname" class="form-control">
-        <label for="">CSUB ID: </label>
-        <input type="text" ng-model="student.csub_id" class="form-control">
-        <button type="button" class="btn btn-danger" ng-click="deleteStudent(student)">Delete</button>
-        <button type="button" class="btn btn-primary" ng-click="updateStudent(student)">Update</button>
-      </form>
-    </div>
+  <div class="card-content">
+    <div ng-include="'partials/tabs.html'"></div>
+    <h1>{{message}}</h1>
+    <form action="" class="form-group">
+      <label for="">First Name: </label>
+      <input type="text" ng-model="student.fname" class="form-control">
+      <label for="">Last Name: </label>
+      <input type="text" ng-model="student.lname" class="form-control">
+      <label for="">CSUB ID: </label>
+      <input type="text" ng-model="student.csub_id" class="form-control">
+      <button type="button" class="btn btn-danger" ng-click="deleteStudent(student)">Delete</button>
+      <button type="button" class="btn btn-primary" ng-click="updateStudent(student)">Update</button>
+    </form>
   </div>
 </div>

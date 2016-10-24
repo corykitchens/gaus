@@ -47,6 +47,7 @@ gausApp.controller('studentListController', ($scope, $rootScope, $http, $locatio
   };
 });
 
+
 gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location) => {
   $scope.title = "Create New Student";
 
@@ -89,7 +90,6 @@ gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location
 gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $location) => {
   $scope.message = 'Student Profile';
   let urlParams = $location.search();
-  urlParams.id;
   $http.get('/api/students/' + urlParams.id).then((res) => {
     $scope.student = res.data.student;
   });
@@ -102,17 +102,33 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
   if (urlParams.type !== null) {
     $scope.testType = urlParams.type.toUpperCase();
   }
-
+  
   let student_id = urlParams.student;
   if (!student_id) {
     $scope.flashMessage = "Error No Student";
 
+  } else {
+    $http.get('/api/students/' + student_id).then((res) => {
+      $scope.student = res.data.student;
+    });
   }
-  $http.get('/api/students/' + student_id).then((res) => {
-    $scope.student = res.data.student;
-  });
+
   // TODO
   // Evaluate if student has previously taken test
   // Call testFactory to return a test object to iterate through
   // for the individual form fields
+});
+
+
+gausApp.controller('studentEvalController', ($scope, $rootScope, $location, $http) => {
+  $scope.message = "Student Evaluation Results";
+  let urlParams = $location.search();
+  let student_id = urlParams.id;
+  if (!student_id) {
+    $scope.flashMessage = "Error No Student";
+  } else {
+    $http.get('/api/students/' + student_id).then((res) => {
+      $scope.student = res.data.student;
+    });
+  }
 });

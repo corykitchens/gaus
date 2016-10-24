@@ -65,7 +65,7 @@ $(document).ready(() => {
       };
   var width = 800 - margin.left - margin.right; //TODO dynamically get width
   var height = 500 - margin.top - margin.bottom;
-  
+
   var x = d3.scale.linear()
       .range([0, width]);
 

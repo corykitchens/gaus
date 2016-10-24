@@ -174,3 +174,22 @@ body {
 .card-content {
   padding: 1em;
 }
+
+.card-content button {
+  margin-top: 1em;
+}
+
+.tabs {
+  list-style-type: none;
+  border-bottom: 1px solid black;
+}
+
+.tabs li {
+  display: inline-block;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  padding: 1em;
+  margin-right: 2em;
+  border-radius: 5px;
+}

@@ -1,6 +1,7 @@
 <div ng-controller="studentTestController">
-  <div id="flash-msg">{{flashMessage}}</div>
-  <h1>{{testType}}</h1>
-  Student Name: {{student.fname}} {{student.lname}}
-  {{testForm}}
+  <div class="card-content">
+    <div ng-include="'partials/tabs.html'"></div>
+    <h1>Test for {{student.fname}} {{student.lname}}</h1>
+
+  </div>
 </div>
