@@ -1,13 +1,13 @@
 <div ng-controller="studentProfileController">
-  <div class="tabs">
-    <ul>
+  <div>
+    <ul class="tabs">
       <li>
-        <a href="#/student">
-        Profile
+        <a href="#/student?id={{student._id}}">
+          Profile
         </a>
       </li>
       <li>
-        <a href="#/student/eval">
+        <a href="#/student/eval?id={{student._id}}">
           Evaluations
         </a>
       </li>
@@ -17,12 +17,12 @@
         </a>
       </li>
       <li>
-        <a href="#/student/microcog">
+        <a href="#/student/test?type=microcog&student={{student._id}}">
           MicroCog
         </a>
       </li>
       <li>
-        <a href="#/student/wais">
+        <a href="#/student/test?type=wais&student={{student._id}}">
           WAIS-IV
         </a>
       </li>

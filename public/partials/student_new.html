@@ -1,15 +1,17 @@
 <div ng-controller="newStudentController">
-  <h1>{{title}}</h1>
-  <form ng-submit="submit()" class="form-group">
-    <label for="fname">First Name</label>
-    <input type="text" name="fname" ng-model="student.fname" class="form-control">
+  <div class="card-content">
+    <h1>{{title}}</h1>
+    <form ng-submit="submit()" class="form-group">
+      <label for="fname">First Name</label>
+      <input type="text" name="fname" ng-model="student.fname" class="form-control">
 
-    <label for="">Last Name</label>
-    <input type="text" name="lname" ng-model="student.lname" class="form-control">
+      <label for="">Last Name</label>
+      <input type="text" name="lname" ng-model="student.lname" class="form-control">
 
-    <label for="csub_id">CSUB ID:</label>
-    <input type="text" name="csub_id" ng-model="student.csub_id" class="form-control">
+      <label for="csub_id">CSUB ID:</label>
+      <input type="text" name="csub_id" ng-model="student.csub_id" class="form-control">
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 </div>

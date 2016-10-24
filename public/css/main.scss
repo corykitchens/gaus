@@ -1,11 +1,11 @@
 $main-content-bg: #DDE0E5;
 $branding-bg: #3498DB;
-$secondary-color: #F7CA18; 
+$secondary-color: #F7CA18;
 
 $off-white: #F5F5F6;
 
 $stripe-even: #ddd;
-$stripe-odd: $off-white; 
+$stripe-odd: $off-white;
 
 $text-color: #383838;
 $grey-border: #979797;
@@ -66,7 +66,7 @@ body {
     width: 75%;
     margin: 0 0 0 5em;
     border: 1px solid $grey-border;
-    
+
 }
 
 #eval-graph {
@@ -91,13 +91,13 @@ body {
 }
 
 .search-box {
- 
+
     padding: 1em 0.5em 2em 0;
     min-height: 100%;
 }
 
 .pagination-box {
- 
+
 }
 
 // Create mixin to inclue to DRY up code
@@ -169,4 +169,8 @@ body {
 }
 
 #eval-graph {
+}
+
+.card-content {
+  padding: 1em;
 }

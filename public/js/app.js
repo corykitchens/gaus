@@ -2,13 +2,15 @@
 /**
 * TODO
 * Query backend to return test object based on test type
+* Send flash messages based on success/failures
+*
 */
 const gausApp = angular.module('gausApp', ['ngRoute']);
 
 gausApp.config(($routeProvider) => {
   $routeProvider
   .when('/', {
-    templateUrl: 'partials/main.html'
+    templateUrl: 'partials/student_list.html'
   })
   .when('/student', {
     templateUrl: 'partials/student_profile.html'
@@ -28,9 +30,7 @@ gausApp.config(($routeProvider) => {
   .when('/student/new', {
     templateUrl: 'partials/student_new.html'
   })
-
 });
-
 
 gausApp.controller('studentListController', ($scope, $rootScope, $http, $location) => {
   $scope.message = "Student Lists";
@@ -47,7 +47,7 @@ gausApp.controller('studentListController', ($scope, $rootScope, $http, $locatio
   };
 });
 
-gausApp.controller('newStudentController', ($scope, $http) => {
+gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location) => {
   $scope.title = "Create New Student";
 
   //Submit Event Handler
@@ -75,27 +75,28 @@ gausApp.controller('newStudentController', ($scope, $http) => {
   //student obj as payload
   function postStudent(student) {
     $http.post('/api/students/new', $scope.student).then((res) => {
-
+      if (res.status === 200) {
+        $rootScope.flash = "Student created successful";
+      } else {
+        $rootScope.flash = "Error creating Student";
+      }
+      $location.path('/');
     });
   }
 });
 
 
-gausApp.controller('studentProfileController', ($scope, $rootScope, $http) => {
+gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $location) => {
   $scope.message = 'Student Profile';
-  // TODO
-  // Refactory to use $location to get
-  // query params of student id
-  // instead of setting properties on the rootScope
-  $scope.student = $rootScope.student;
-  $rootScope.student = null;
-  $http.get('/api/students/' + $scope.student._id).then((res) => {
+  let urlParams = $location.search();
+  urlParams.id;
+  $http.get('/api/students/' + urlParams.id).then((res) => {
     $scope.student = res.data.student;
   });
 });
 
 
-gausApp.controller('studentTestController', ($scope, $rootScope, $location, $http, testFactory) => {
+gausApp.controller('studentTestController', ($scope, $rootScope, $location, $http) => {
   $scope.message = "New Test";
   let urlParams = $location.search();
   if (urlParams.type !== null) {
@@ -114,30 +115,4 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
   // Evaluate if student has previously taken test
   // Call testFactory to return a test object to iterate through
   // for the individual form fields
-});
-
-
-gausApp.factory('testFactory', () => {
-  // Find a way to get obj keys based on
-  // querying backend instead of hardcoding
-  // keys to an object and returning it
-  function getType(testType) {
-    let service = {};
-    switch (testType) {
-      case "wais":
-          service[testType] : {
-          }
-        break;
-      case "wiat":
-
-        break;
-      case "microcog":
-
-        break;
-      default:
-        break;
-
-    }
-    return service;
-  }
 });
