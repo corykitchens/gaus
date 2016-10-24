@@ -18,7 +18,6 @@ gausApp.config(($routeProvider) => {
 gausApp.controller('studentListController', ($scope, $rootScope, $http, $location) => {
   $scope.message = "Student Lists";
   $http.get('/api/students').then((res) => {
-    console.log(res.data.students);
     $scope.students = res.data.students;
   });
 
@@ -70,8 +69,8 @@ gausApp.controller('studentProfileController', ($scope, $rootScope, $http) => {
   $scope.message = 'Student Profile';
   $scope.student = $rootScope.student;
   $rootScope.student = null;
+  console.log($scope.student._id);
   $http.get('/api/students/' + $scope.student._id).then((res) => {
-    console.log(res);
     $scope.student = res.data.student;
   });
 });

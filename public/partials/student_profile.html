@@ -1,4 +1,46 @@
 <div ng-controller="studentProfileController">
+  <div class="tabs">
+    <ul>
+      <li>
+        <a href="/student">
+        Profile
+        </a>
+      </li>
+      <li>
+        <a href="/student/eval">
+          Evaluations
+        </a>
+      </li>
+      <li>
+        <a href="/student/wiat">
+          WIAT-III
+        </a>
+      </li>
+      <li>
+        <a href="/student/microcog">
+          MicroCog
+        </a>
+      </li>
+      <li>
+        <a href="/student/wais">
+          WAIS-IV
+        </a>
+      </li>
+    </ul>
+  </div>
   <h1>{{message}}</h1>
-  {{student}}
+  <div class="row">
+    <div class="col-md-12">
+      <form action="" class="form-group">
+        <label for="">First Name: </label>
+        <input type="text" ng-model="student.fname" class="form-control">
+        <label for="">Last Name: </label>
+        <input type="text" ng-model="student.lname" class="form-control">
+        <label for="">CSUB ID: </label>
+        <input type="text" ng-model="student.csub_id" class="form-control">
+        <button type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+  </div>
 </div>
