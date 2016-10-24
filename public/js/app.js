@@ -1,4 +1,8 @@
 'use strict';
+/**
+* TODO
+* Create Service to pass student obj between routes
+*/
 const gausApp = angular.module('gausApp', ['ngRoute']);
 
 gausApp.config(($routeProvider) => {
@@ -9,9 +13,22 @@ gausApp.config(($routeProvider) => {
   .when('/student', {
     templateUrl: 'partials/student_profile.html'
   })
+  .when('/student/eval', {
+    templateUrl: 'partials/student_eval.html'
+  })
+  .when('/student/wiat', {
+    templateUrl: 'partials/student_test.html'
+  })
+  .when('/student/microcog', {
+    templateUrl: 'partials/student_test.html'
+  })
+  .when('/student/wais', {
+    templateUrl: 'partials/student_test.html'
+  })
   .when('/student/new', {
     templateUrl: 'partials/student_new.html'
   })
+
 });
 
 
@@ -47,7 +64,6 @@ gausApp.controller('newStudentController', ($scope, $http) => {
   //
   function parseStudent(student) {
     for (let prop in student) {
-      console.log(student[prop]);
       if (student[prop] === null) {
         return false;
       }
@@ -59,7 +75,7 @@ gausApp.controller('newStudentController', ($scope, $http) => {
   //student obj as payload
   function postStudent(student) {
     $http.post('/api/students/new', $scope.student).then((res) => {
-      console.log(res);
+
     });
   }
 });
@@ -69,7 +85,6 @@ gausApp.controller('studentProfileController', ($scope, $rootScope, $http) => {
   $scope.message = 'Student Profile';
   $scope.student = $rootScope.student;
   $rootScope.student = null;
-  console.log($scope.student._id);
   $http.get('/api/students/' + $scope.student._id).then((res) => {
     $scope.student = res.data.student;
   });
