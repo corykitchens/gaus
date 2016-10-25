@@ -52,9 +52,10 @@ gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location
   $scope.submit = function() {
     if (!parseStudent($scope.student)) {
       // Send this as a flash message instead
-      alert('Incorrect Input');
+      $rootScope.flash = {type: "alert-danger", msg: "Error invalid values submitted"};
+    } else {
+      postStudent($scope.student);
     }
-    postStudent($scope.student);
   }
 
   function parseStudent(student) {
@@ -69,7 +70,7 @@ gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location
       }
     }
     //Verifies whether a valid ID is passed
-    if (Number(student.csub_id) === NaN) {
+    if (isNaN(student.csub_id)) {
       return false;
     }
     return true;
@@ -80,9 +81,9 @@ gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location
   function postStudent(student) {
     $http.post('/api/students/new', $scope.student).then((res) => {
       if (res.status === 200) {
-        $rootScope.flash = "Student created successful";
+        $rootScope.flash = {type: "alert-success", msg: "Student created successfully"};
       } else {
-        $rootScope.flash = "Error creating Student";
+        $rootScope.flash = {type: "alert-danger", msg: "Error creating Student"};
       }
       $location.path('/');
     });
