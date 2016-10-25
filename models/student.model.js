@@ -55,7 +55,7 @@ const studentSchema = new Schema({
   created_at: Date,
   evaluations: {
     wais: waisSchema,
-    micro_cog: microcogSchema,
+    microcog: microcogSchema,
     wiat: wiatSchema,
   }
 });

@@ -15,7 +15,7 @@ module.exports.list = (cb) => {
 module.exports.create = (student, cb) => {
   let wais = {},
       wiat = {},
-      micro_cog = {};
+      mircocog = {};
 
   Student.create({
     fname: student.fname,
@@ -25,7 +25,7 @@ module.exports.create = (student, cb) => {
     evaluations: {
       wais: wais,
       wiat: wiat,
-      micro_cog: micro_cog
+      microcog: mircocog
     }
   }, (err, student) => {
     if (err) return cb(err, null);
@@ -57,8 +57,8 @@ module.exports.updateMicrocog = (student_id, mc, cb) => {
     _id: student_id
   }, (err, student) => {
     if (err) return cb(err, null);
-    student.evaluations.micro_cog = mc;
+    student.evaluations.microcog = mc;
     student.save();
-    return cb(null, student.evaluations.micro_cog);
+    return cb(null, student.evaluations.mircocog);
   })
 }

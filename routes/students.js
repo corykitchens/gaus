@@ -55,16 +55,16 @@ router.get('/:id/evaluation', (req, res) => {
 });
 
 //============= GET STUDENT'S MICROCOG ASSESSMENT ==============//
-router.get('/:id/micro_cog', (req, res) => {
+router.get('/:id/microcog', (req, res) => {
   res.json({ msg: 'Get Single Students MicroCog'})
 })
 
 //============= CREATE STUDENT'S MICROCOG ASSESSMENT ==============//
-router.post('/:id/micro_cog', (req, res) => {
+router.post('/:id/microcog', (req, res) => {
   res.json({ msg: 'Submit new Microcog Assessment'})
 });
 //============= UPDATE STUDENT'S MICROCOG ASSESSMENT ==============//
-router.put('/:id/micro_cog', (req, res) => {
+router.put('/:id/microcog', (req, res) => {
   let student_id = req.params.id;
   let mc = req.body;
   studentController.updateMicrocog(student_id, mc, (err, updated_mc) => {
