@@ -64,7 +64,7 @@ $(document).ready(() => {
           bottom: 30,
           left: 50
       };
-  var width = 800 - margin.left - margin.right; //TODO dynamically get width
+  var width = $("#eval-graph").width() - margin.left - margin.right; //TODO dynamically get width
   var height = 500 - margin.top - margin.bottom;
 
   var x = d3.scale.linear()
