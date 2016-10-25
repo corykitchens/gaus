@@ -97,26 +97,19 @@ gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $loca
 
 
 gausApp.controller('studentTestController', ($scope, $rootScope, $location, $http) => {
-  $scope.message = "New Test";
   let urlParams = $location.search();
-  if (urlParams.type !== null) {
-    $scope.testType = urlParams.type.toUpperCase();
+  if (urlParams.testtype !== null) {
+    $scope.testType = urlParams.testtype.toUpperCase();
   }
-  
   let student_id = urlParams.student;
   if (!student_id) {
     $scope.flashMessage = "Error No Student";
-
   } else {
     $http.get('/api/students/' + student_id).then((res) => {
       $scope.student = res.data.student;
+      $scope.testForms = $scope.student.evaluations[$scope.testType.toLowerCase()];
     });
   }
-
-  // TODO
-  // Evaluate if student has previously taken test
-  // Call testFactory to return a test object to iterate through
-  // for the individual form fields
 });
 
 

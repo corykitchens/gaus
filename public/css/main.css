@@ -124,7 +124,7 @@ body {
 
 .tabs {
   list-style-type: none;
-  border-bottom: 1px solid black; }
+  border-bottom: 2px solid black; }
 
 .tabs li {
   display: inline-block;

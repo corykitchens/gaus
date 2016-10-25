@@ -1,7 +1,21 @@
 <div ng-controller="studentTestController">
   <div class="card-content">
     <div ng-include="'partials/tabs.html'"></div>
-    <h1>Test for {{student.fname}} {{student.lname}}</h1>
-
+    <h1>{{testType}} Test for {{student.fname}} {{student.lname}}</h1>
+    <form action="">
+      <ul>
+        <div class="row">
+        <li ng-repeat="(key, value) in testForms">
+          <div class="col-md-2">
+            <label for="{{field}}">{{key}}</label>
+          </div>
+          <div class="col-md-10">
+            <input type="text" ng-model="value" class="form-control">
+          </div>
+        </li>
+        </div>
+        <button>Update</button>
+      </ul>
+    </form>
   </div>
 </div>
