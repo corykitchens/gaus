@@ -51,14 +51,16 @@ module.exports.delete = (student_id, cb) => {
 
 }
 
-module.exports.updateMicrocog = (student_id, mc, cb) => {
-  console.log(mc);
+module.exports.updateTest = (student_id, type, updated_test, cb) => {
+  console.log(updated_test);
+  console.log(type);
+  
   Student.findOne({
     _id: student_id
   }, (err, student) => {
     if (err) return cb(err, null);
-    student.evaluations.microcog = mc;
+    student.evaluations[type] = updated_test;
     student.save();
-    return cb(null, student.evaluations.mircocog);
+    return cb(null, student.evaluations[type]);
   })
 }

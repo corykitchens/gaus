@@ -67,7 +67,7 @@ router.post('/:id/microcog', (req, res) => {
 router.put('/:id/microcog', (req, res) => {
   let student_id = req.params.id;
   let mc = req.body;
-  studentController.updateMicrocog(student_id, mc, (err, updated_mc) => {
+  studentController.updateTest(student_id, "microcog", mc, (err, updated_mc) => {
     if (err) return res.status(500).json({ msg: err });
     return res.status(200).json({ msg: updated_mc});
   })
@@ -89,7 +89,12 @@ router.post('/:id/wiat', (req, res) => {
 });
 //============= UPDATE STUDENT'S WIAT ASSESSMENT ==============//
 router.put('/:id/wiat', (req, res) => {
-  res.json({ msg: 'Update WIAT Assessement'});
+  let student_id = req.params.id;
+  let wiat = req.body;
+  studentController.updateTest(student_id, "wiat", wiat, (err, updated_wiat) => {
+    if (err) return res.status(500).json({ msg: err });
+    return res.status(200).json({ msg: updated_wiat});
+  })
 });
 
 //============= DELETE STUDENT'S WIAT ASSESSMENT ==============//
@@ -108,7 +113,12 @@ router.post('/:id/wais', (req, res) => {
 });
 //============= UPDATE STUDENT'S WAIS ASSESSMENT ==============//
 router.put('/:id/wais', (req, res) => {
-  res.json({ msg: 'Update WAIS Assessement'});
+  let student_id = req.params.id;
+  let wais = req.body;
+  studentController.updateTest(student_id, "wais", wais, (err, updated_wais) => {
+    if (err) return res.status(500).json({ msg: err });
+    return res.status(200).json({ msg: updated_wais});
+  })
 });
 
 //============= DELETE STUDENT'S WAIS ASSESSMENT ==============//
