@@ -52,9 +52,6 @@ module.exports.delete = (student_id, cb) => {
 }
 
 module.exports.updateTest = (student_id, type, updated_test, cb) => {
-  console.log(updated_test);
-  console.log(type);
-  
   Student.findOne({
     _id: student_id
   }, (err, student) => {

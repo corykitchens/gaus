@@ -2,7 +2,29 @@
   <div class="card-content">
     <div ng-include="'partials/tabs.html'"></div>
     <h2>Evaluation Results for {{student.fname}} {{student.lname}}</h2>
-    <div id="eval-graph"></div>
+    <div id="eval-graph">
+      <table class="table table-responsive">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Test Type</th>
+            <th>Color</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>MicroCog</td>
+          <td>Red</td>
+        </tr>
+        <tr>
+          <td>WIAS-III</td>
+          <td>Green</td>
+        </tr>
+        <tr>
+          <td>WIAT-IV</td>
+          <td>Orange</td>
+        </tr>
+      </table>
+    </div>
+
     <div class="table-responsive">
       <table id="student-data-table" class="table table-striped">
       <thead>

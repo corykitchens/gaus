@@ -51,12 +51,10 @@ const init = () => {
   return data;
 }
 
-
-
-
+// TODO
+// Does not work with partials, only runs during full refresh
 $(document).ready(() => {
   let data = init();
-
   // line chart based on http://bl.ocks.org/mbostock/3883245
   var margin = {
           top: 20,
@@ -107,12 +105,100 @@ $(document).ready(() => {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis);
+  // svg.append("g")
+  //     .attr("class", "y axis")
+  //     .call(yAxis);
 
   svg.append("path")
       .datum(data)
-      .attr("class", "line")
+      .attr("fill","#26C6DA")
+      .attr("stroke", "#000")
       .attr("d", line);
+
+  let mcScore = 100;
+  let waisScore = 80;
+  let wiatScore = 122;
+
+  //MC circle
+  svg.append("circle")
+    .attr("fill", "red" )
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("cx", setLegendLocation(mcScore, 55, 145) * width)
+    .attr("cy", 100)
+    .attr("r", "15");
+  //WAIS circle
+  svg.append("circle")
+    .attr("fill", "green" )
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("cx", setLegendLocation(waisScore, 55, 145) * width)
+    .attr("cy", 100)
+    .attr("r", "15");
+  //WIAT circle
+  svg.append("circle")
+    .attr("fill", "orange" )
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("cx", setLegendLocation(wiatScore, 55, 145) * width)
+    .attr("cy", 100)
+    .attr("r", "15");
+
+  d3.select("#save").on("click", function(){
+    //generates the html markup
+    // containing the svg path attribs
+    var html = d3.select("svg")
+    .attr("version", 1.1)
+    .attr("xmlns", "http://www.w3.org/2000/svg")
+    .node().parentNode.innerHTML;
+
+    // Encodes the svg markup
+    // to a base64 String object
+    // and appaneds it to a data uri
+    var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
+    var img = '<img src="'+imgsrc+'">';
+    // d3.select("#svgdataurl").html(img);
+
+    //Get context to the canvas element
+    var canvas = document.querySelector("canvas");
+    canvas.width = width;
+    canvas.height = 600;
+    var context = canvas.getContext("2d");
+
+    // Create new image
+    var image = new Image;
+    image.src = imgsrc;
+    image.onload = function() {
+      context.drawImage(image, 0, 0);
+      //save and serve it as an actual filename
+      binaryblob();
+      var a = document.createElement("a");
+      a.download = "eval.png";
+      a.href = canvas.toDataURL("image/png");
+      var pngimg = '<img src="'+a.href+'">';
+      d3.select("#pngdataurl").html(pngimg);
+      a.click();
+    };
+
+  });
+
+  function binaryblob() {
+    var byteString = atob(document.querySelector("canvas").toDataURL().replace(/^data:image\/(png|jpg);base64,/, ""));
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    var dataView = new DataView(ab);
+    var blob = new Blob([dataView], {type: "image/png"});
+    var DOMURL = self.URL || self.webkitURL || self;
+    var newurl = DOMURL.createObjectURL(blob);
+    var img = '<img src="'+newurl+'">';
+    d3.select("#img").html(img);
+}
+
+  function setLegendLocation(score, min, max) {
+    return (((score - min) / (max-min)) * 100) * 0.01;
+  }
+
 });

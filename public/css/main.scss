@@ -66,12 +66,16 @@ body {
     width: 75%;
     margin: 0 0 0 5em;
     border: 1px solid $grey-border;
-
 }
 
 #eval-graph {
-    margin: 0 auto;
+    width: 100%;
+    position: relative;
+}
 
+#eval-graph table {
+  width: 25%;
+  position: absolute;
 }
 
 .nav-item > .nav-link.active {
