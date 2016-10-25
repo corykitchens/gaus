@@ -13,12 +13,20 @@ module.exports.list = (cb) => {
 }
 //create new student
 module.exports.create = (student, cb) => {
-  console.log(student);
+  let wais = {},
+      wiat = {},
+      micro_cog = {};
+
   Student.create({
     fname: student.fname,
     lname: student.lname,
     csub_id: student.csub_id,
-    created_at: Date.now()
+    created_at: Date.now(),
+    evaluations: {
+      wais: wais,
+      wiat: wiat,
+      micro_cog: micro_cog
+    }
   }, (err, student) => {
     if (err) return cb(err, null);
     return cb(null, student);
