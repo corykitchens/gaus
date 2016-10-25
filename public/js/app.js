@@ -3,10 +3,13 @@
 * TODO
 * Query backend to return test object based on test type
 * Send flash messages based on success/failures
-*
+* Refactor controllers/routers/ in seperate files
 */
 const gausApp = angular.module('gausApp', ['ngRoute']);
 
+/**
+* @name Route Handling
+*/
 gausApp.config(($routeProvider) => {
   $routeProvider
   .when('/', {
@@ -21,53 +24,53 @@ gausApp.config(($routeProvider) => {
   .when('/student/test', {
     templateUrl: 'partials/student_test.html'
   })
-  .when('/student/microcog', {
-    templateUrl: 'partials/student_test.html'
-  })
-  .when('/student/wais', {
-    templateUrl: 'partials/student_test.html'
-  })
   .when('/student/new', {
     templateUrl: 'partials/student_new.html'
   })
 });
 
+/**
+* @name Student List Controller
+*/
 gausApp.controller('studentListController', ($scope, $rootScope, $http, $location) => {
-  $scope.message = "Student Lists";
+  $scope.title = "Student Listing";
+
+  //TODO test for 500/404 statuses
   $http.get('/api/students').then((res) => {
     $scope.students = res.data.students;
   });
 
-  $scope.getStudentProfile = function(student) {
-    if (!student) {
-      alert('Error No Student');
-    }
-    $rootScope.student = student;
-    $location.url('/student');
-  };
 });
 
-
+/**
+* @name New Student Controller
+*/
 gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location) => {
   $scope.title = "Create New Student";
 
   //Submit Event Handler
   $scope.submit = function() {
-
     if (!parseStudent($scope.student)) {
+      // Send this as a flash message instead
       alert('Incorrect Input');
     }
     postStudent($scope.student);
   }
 
-  //Tests for null or bad input
-  // TODO
-  //
   function parseStudent(student) {
+    // Iterates through student properties
+    // Tests for undefined or null values
     for (let prop in student) {
-      if (student[prop] === null) {
+      if (student[prop] === undefined) {
         return false;
       }
+      else if (student[prop] === null) {
+        return false;
+      }
+    }
+    //Verifies whether a valid ID is passed
+    if (Number(student.csub_id) === NaN) {
+      return false;
     }
     return true;
   }
@@ -85,8 +88,9 @@ gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location
     });
   }
 });
-
-
+/**
+* @name Student Profile Controller
+*/
 gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $location) => {
   $scope.message = 'Student Profile';
   let urlParams = $location.search();
@@ -94,8 +98,9 @@ gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $loca
     $scope.student = res.data.student;
   });
 });
-
-
+/**
+* @name Student Test Controller
+*/
 gausApp.controller('studentTestController', ($scope, $rootScope, $location, $http) => {
   let urlParams = $location.search();
   if (urlParams.testtype !== null) {
@@ -111,8 +116,9 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
     });
   }
 });
-
-
+/**
+* @name Student Evaluation Controller
+*/
 gausApp.controller('studentEvalController', ($scope, $rootScope, $location, $http) => {
   $scope.message = "Student Evaluation Results";
   let urlParams = $location.search();
