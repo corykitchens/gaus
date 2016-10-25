@@ -119,9 +119,6 @@ body {
 .card-content {
   padding: 1em; }
 
-.card-content button {
-  margin-top: 1em; }
-
 .tabs {
   list-style-type: none;
   border-bottom: 2px solid black; }

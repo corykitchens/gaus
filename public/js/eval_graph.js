@@ -56,6 +56,7 @@ const init = () => {
 
 $(document).ready(() => {
   let data = init();
+
   // line chart based on http://bl.ocks.org/mbostock/3883245
   var margin = {
           top: 20,
