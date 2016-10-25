@@ -116,6 +116,32 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
       $scope.testForms = $scope.student.evaluations[$scope.testType.toLowerCase()];
     });
   }
+
+
+  $scope.submitTest = function() {
+    // Parse input
+    if (parseTestInput($scope.testForms)) {
+      let url = '/api/students/' + $scope.student._id + '/' + $scope.testType.toLowerCase();
+      $http.put(url, $scope.testForms).then((res) => {
+        if (res.status === 200) {
+          $rootScope.flash = {type: "alert-success", msg: "Test saved succcesfully" };
+        }
+      });
+    }
+  };
+
+  function parseTestInput(testForms) {
+    for (let prop in testForms) {
+      if (isNaN(testForms[prop])) {
+        if(prop !== '_id') {
+          $rootScope.flash = {type: 'alert-danger', msg: 'Incorrect Input' };
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
 });
 /**
 * @name Student Evaluation Controller

@@ -55,17 +55,22 @@ router.get('/:id/evaluation', (req, res) => {
 });
 
 //============= GET STUDENT'S MICROCOG ASSESSMENT ==============//
-router.get('/:id/microcog', (req, res) => {
+router.get('/:id/micro_cog', (req, res) => {
   res.json({ msg: 'Get Single Students MicroCog'})
 })
 
 //============= CREATE STUDENT'S MICROCOG ASSESSMENT ==============//
-router.post('/:id/microcog', (req, res) => {
+router.post('/:id/micro_cog', (req, res) => {
   res.json({ msg: 'Submit new Microcog Assessment'})
 });
 //============= UPDATE STUDENT'S MICROCOG ASSESSMENT ==============//
-router.put('/:id/microcog', (req, res) => {
-  res.json({ msg: 'Update MicroCog Assessement'});
+router.put('/:id/micro_cog', (req, res) => {
+  let student_id = req.params.id;
+  let mc = req.body;
+  studentController.updateMicrocog(student_id, mc, (err, updated_mc) => {
+    if (err) return res.status(500).json({ msg: err });
+    return res.status(200).json({ msg: updated_mc});
+  })
 });
 
 //============= DELETE STUDENT'S MICROCOG ASSESSMENT ==============//

@@ -50,3 +50,15 @@ module.exports.update = (student, cb) => {
 module.exports.delete = (student_id, cb) => {
 
 }
+
+module.exports.updateMicrocog = (student_id, mc, cb) => {
+  console.log(mc);
+  Student.findOne({
+    _id: student_id
+  }, (err, student) => {
+    if (err) return cb(err, null);
+    student.evaluations.micro_cog = mc;
+    student.save();
+    return cb(null, student.evaluations.micro_cog);
+  })
+}
