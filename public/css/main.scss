@@ -168,9 +168,6 @@ body {
     padding: 1em 0 1em 0;
 }
 
-#eval-graph {
-}
-
 .card-content {
   padding: 1em;
 }
@@ -188,4 +185,27 @@ body {
   padding: 1em;
   margin-right: 2em;
   border-radius: 5px;
+}
+
+
+// TEST STYLES
+.test-list {
+  list-style-type: none;
+}
+.test-list-item {
+  background-color: $branding-bg;
+  padding-top: 1em;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+.test-list-item label {
+  color: $off-white;
+  margin-left: 0em;
+}
+
+.fl-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
