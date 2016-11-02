@@ -55,8 +55,6 @@ const init = () => {
 // TODO
 // Does not work with partials, only runs during full refresh
 window.startGraphInit = (evaluations) => {
-  console.log('EVAL');
-  console.log(evaluations);
   let data = init();
   // line chart based on http://bl.ocks.org/mbostock/3883245
   var margin = {

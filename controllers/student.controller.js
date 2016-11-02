@@ -48,7 +48,12 @@ module.exports.update = (student, cb) => {
 }
 // delete single student
 module.exports.delete = (student_id, cb) => {
-
+  Student.remove({
+    _id: student_id
+  }, (err) => {
+    if (err) return cb(err, null);
+    return cb(err, "Student Deleted");
+  });
 }
 
 module.exports.updateTest = (student_id, type, updated_test, cb) => {

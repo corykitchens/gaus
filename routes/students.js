@@ -27,7 +27,10 @@ router.put('/:id', (req, res) => {
 
 //============= DELETE SINGLE STUDENT ==============//
 router.delete('/:id', (req, res) => {
-  res.json({ msg: 'Delete Single Student'});
+  studentController.delete(req.params.id, (err, msg) => {
+    if (err) res.status(500).json({msg: err});
+    res.status(200).json({msg});
+  });
 });
 
 //============= GET NEW STUDENT ==============//
