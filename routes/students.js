@@ -22,7 +22,11 @@ router.get('/:id', (req, res) => {
 
 //============= UPDATE SINGLE STUDENT ==============//
 router.put('/:id', (req, res) => {
-  res.json({ msg: 'Update Single Student'});
+  studentController.update(req.params.id, req.body, (err, msg) => {
+      if (err) res.status(500).json({msg: err});
+      res.status(200).json({msg})
+  })
+
 });
 
 //============= DELETE SINGLE STUDENT ==============//

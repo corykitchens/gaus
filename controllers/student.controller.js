@@ -43,8 +43,13 @@ module.exports.show = (student_id, cb) => {
   });
 }
 // Update student
-module.exports.update = (student, cb) => {
-
+module.exports.update = (student_id, updated_student, cb) => {
+  Student.findOneAndUpdate({
+    _id : student_id
+  }, updated_student, (err, returnedStudent) => {
+    if (err) return cb(err, null);
+    return cb(null, "Student updated Successfully");
+  });
 }
 // delete single student
 module.exports.delete = (student_id, cb) => {

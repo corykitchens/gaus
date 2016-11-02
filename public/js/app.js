@@ -108,11 +108,22 @@ gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $loca
     sendDeleteRequest($scope.student);
   };
 
+
+  $scope.updateStudent = function() {
+    sendPutRequest($scope.student);
+  }
+
   function sendDeleteRequest(student) {
     $http.delete('/api/students/' + student._id).then((res) => {
-      console.log(res);
       flash.setMessage(res.data.msg);
       $location.path('/');
+    });
+  }
+
+  function sendPutRequest(student) {
+    $http.put('/api/students/' + student._id, student).then((res) => {
+      flash.setMessage(res.data.msg);
+      $location.path('/student?id='+student._id);
     });
   }
 });
@@ -132,7 +143,6 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
     $http.get('/api/students/' + student_id).then((res) => {
       $scope.student = res.data.student;
       $scope.testForms = $scope.student.evaluations[$scope.testType.toLowerCase()];
-      console.log($scope.testForms);
     });
   }
 
