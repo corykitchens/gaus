@@ -1,8 +1,6 @@
 'use strict';
 /**
 * TODO
-* Query backend to return test object based on test type
-* Send flash messages based on success/failures
 * Refactor controllers/routers/ in seperate files
 */
 const gausApp = angular.module('gausApp', ['ngRoute']);
@@ -27,14 +25,18 @@ gausApp.config(($routeProvider) => {
   .when('/student/new', {
     templateUrl: 'partials/student_new.html'
   })
+  .otherwise({redirectTo: '/'});
 });
 
+
+gausApp.controller('RootCtrl', ($scope, flash) => {
+  $scope.flash = flash;
+});
 /**
 * @name Student List Controller
 */
-gausApp.controller('studentListController', ($scope, $rootScope, $http, $location) => {
+gausApp.controller('studentListController', ($scope, $rootScope, $http, $location, flash) => {
   $scope.title = "Student Listing";
-
   //TODO test for 500/404 statuses
   $http.get('/api/students').then((res) => {
     $scope.students = res.data.students;
@@ -45,14 +47,14 @@ gausApp.controller('studentListController', ($scope, $rootScope, $http, $locatio
 /**
 * @name New Student Controller
 */
-gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location) => {
+gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location, flash) => {
+  $scope.flash = flash;
   $scope.title = "Create New Student";
-
   //Submit Event Handler
   $scope.submit = function() {
     if (!parseStudent($scope.student)) {
       // Send this as a flash message instead
-      $rootScope.flash = {type: "alert-danger", msg: "Error invalid values submitted"};
+      flash.setMessage("Error invalid values submitted");
     } else {
       postStudent($scope.student);
     }
@@ -81,9 +83,9 @@ gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location
   function postStudent(student) {
     $http.post('/api/students/new', $scope.student).then((res) => {
       if (res.status === 200) {
-        $rootScope.flash = {type: "alert-success", msg: "Student created successfully"};
+        flash.setMessage('Created Student Successful');
       } else {
-        $rootScope.flash = {type: "alert-danger", msg: "Error creating Student"};
+        flash.setMessage('Error creating student');
       }
       $location.path('/');
     });
@@ -92,7 +94,8 @@ gausApp.controller('newStudentController', ($scope, $http, $rootScope, $location
 /**
 * @name Student Profile Controller
 */
-gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $location) => {
+gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $location, flash) => {
+  $scope.flash = flash;
   $scope.message = 'Student Profile';
   let urlParams = $location.search();
   $http.get('/api/students/' + urlParams.id).then((res) => {
@@ -102,7 +105,8 @@ gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $loca
 /**
 * @name Student Test Controller
 */
-gausApp.controller('studentTestController', ($scope, $rootScope, $location, $http) => {
+gausApp.controller('studentTestController', ($scope, $rootScope, $location, $http, flash) => {
+  $scope.flash = flash;
   let urlParams = $location.search();
   if (urlParams.testtype !== null) {
     $scope.testType = urlParams.testtype.toUpperCase();
@@ -146,7 +150,8 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
 /**
 * @name Student Evaluation Controller
 */
-gausApp.controller('studentEvalController', ($scope, $rootScope, $location, $http) => {
+gausApp.controller('studentEvalController', ($scope, $rootScope, $location, $http, flash) => {
+  $scope.flash = flash;
   $scope.message = "Student Evaluation Results";
   let urlParams = $location.search();
   let student_id = urlParams.id;
@@ -157,4 +162,27 @@ gausApp.controller('studentEvalController', ($scope, $rootScope, $location, $htt
       $scope.student = res.data.student;
     });
   }
+});
+
+
+/**
+* @name Flash factory
+*/
+gausApp.factory('flash', ($rootScope) => {
+  let queue = [];
+  let currentMessage = '';
+
+  $rootScope.$on('$routeChangeSuccess', () => {
+    currentMessage = queue.shift() || "";
+  });
+
+  return {
+    getMessage: () => {
+      return currentMessage;
+    },
+    setMessage: (message) => {
+      queue.push(message);
+    },
+  };
+
 });
