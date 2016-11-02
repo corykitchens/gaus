@@ -3,7 +3,7 @@
     <div ng-include="'partials/tabs.html'"></div>
     <h2>Evaluation Results for {{student.fname}} {{student.lname}}</h2>
     <div id="eval-graph">
-      <table class="table table-responsive">
+      <table class="table">
         <thead class="thead-inverse">
           <tr>
             <th>Test Type</th>
@@ -12,15 +12,15 @@
         </thead>
         <tr>
           <td>MicroCog</td>
-          <td>Red</td>
+          <td><div class="color-box red"></div></td>
         </tr>
         <tr>
-          <td>WIAS-III</td>
-          <td>Green</td>
+          <td>WAIS-III</td>
+          <td><div class="color-box green"></div></td>
         </tr>
         <tr>
           <td>WIAT-IV</td>
-          <td>Orange</td>
+          <td><div class="color-box orange"></div></td>
         </tr>
       </table>
     </div>
@@ -75,8 +75,8 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-primary form-btn" id="save">Export Results</button>
-      <canvas id="canvas" width="870" height="500" style="display:none"></canvas>
+      <button type="button" id="save">Export Results</button>
+      <canvas id="canvas" width="870" height="500"></canvas>
     </div>
   </div>
 </div>

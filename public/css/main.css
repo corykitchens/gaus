@@ -42,6 +42,7 @@ body {
   border: 1px solid #979797; }
 
 #eval-graph {
+  min-height: 500px;
   width: 100%;
   position: relative; }
 
@@ -141,13 +142,11 @@ body {
   list-style-type: none; }
 
 .test-list-item {
-  background-color: #3498DB;
   padding-top: 1em;
   padding-right: 1em;
   padding-left: 1em; }
 
 .test-list-item label {
-  color: #F5F5F6;
   margin-left: 0em; }
 
 .fl-container {
@@ -155,5 +154,18 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between; }
+
+.color-box {
+  width: 50px;
+  height: 50px; }
+
+.red {
+  background-color: #c0392b; }
+
+.green {
+  background-color: #27ae60; }
+
+.orange {
+  background-color: #e67e22; }
 
 /*# sourceMappingURL=main.css.map */

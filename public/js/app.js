@@ -128,7 +128,8 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
       let url = '/api/students/' + $scope.student._id + '/' + $scope.testType.toLowerCase();
       $http.put(url, $scope.testForms).then((res) => {
         if (res.status === 200) {
-          $rootScope.flash = {type: "alert-success", msg: "Test saved succcesfully" };
+          // $rootScope.flash = {type: "alert-success", msg: "Test saved succcesfully" };
+          flash.setMessage('Test Saved Successfully');
         }
       });
     }
@@ -138,7 +139,8 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
     for (let prop in testForms) {
       if (isNaN(testForms[prop])) {
         if(prop !== '_id') {
-          $rootScope.flash = {type: 'alert-danger', msg: 'Incorrect Input' };
+          // $rootScope.flash = {type: 'alert-danger', msg: 'Incorrect Input' };
+          flash.setMessage('Incorrect input');
           return false;
         }
       }
@@ -151,6 +153,9 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
 * @name Student Evaluation Controller
 */
 gausApp.controller('studentEvalController', ($scope, $rootScope, $location, $http, flash) => {
+  // TODO
+  // Research other ways of calling startGraphInit without
+  // polluting global namespace
   $scope.flash = flash;
   $scope.message = "Student Evaluation Results";
   let urlParams = $location.search();
@@ -160,15 +165,21 @@ gausApp.controller('studentEvalController', ($scope, $rootScope, $location, $htt
   } else {
     $http.get('/api/students/' + student_id).then((res) => {
       $scope.student = res.data.student;
+      window.startGraphInit($scope.student.evaluations);
     });
   }
-});
 
+
+
+});
 
 /**
 * @name Flash factory
 */
 gausApp.factory('flash', ($rootScope) => {
+  // TODO
+  // Change queue datastructure so that there will be a success or failure
+  // for customizing css class declaration
   let queue = [];
   let currentMessage = '';
 
