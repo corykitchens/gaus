@@ -64,29 +64,33 @@ window.startGraphInit = (evaluations) => {
   var wiatScore = evaluations.wiat.final_score.value || 55;
 
   //MC circle
-  svg.append("circle")
+  svg.append("rect")
     .attr("fill", "#c0392b" )
     .attr("stroke", "black")
     .attr("stroke-width", 2)
-    .attr("cx", setLegendLocation(mcScore, 55, 145) * width)
-    .attr("cy", height-100)
-    .attr("r", "15");
+    .attr("x", setLegendLocation(mcScore, 55, 145) * width)
+    .attr("y", 0)
+    .attr("height", 450)
+    .attr("width", 5);
+
   //WAIS circle
-  svg.append("circle")
+  svg.append("rect")
     .attr("fill", "#27ae60" )
     .attr("stroke", "black")
     .attr("stroke-width", 2)
-    .attr("cx", setLegendLocation(waisScore, 55, 145) * width)
-    .attr("cy", height-100)
-    .attr("r", "15");
+    .attr("x", setLegendLocation(waisScore, 55, 145) * width)
+    .attr("y", 0)
+    .attr("height", 450)
+    .attr("width", 5);
   //WIAT circle
-  svg.append("circle")
+  svg.append("rect")
     .attr("fill", "#e67e22" )
     .attr("stroke", "black")
     .attr("stroke-width", 2)
-    .attr("cx", setLegendLocation(wiatScore, 55, 145) * width)
-    .attr("cy", height-100)
-    .attr("r", "15");
+    .attr("x", setLegendLocation(wiatScore, 55, 145) * width)
+    .attr("y", 0)
+    .attr("height", 450)
+    .attr("width", 5);
 
   d3.select('#save').on("click", function() {
     generateImage();
