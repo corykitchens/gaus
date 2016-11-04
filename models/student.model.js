@@ -1,51 +1,141 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-/**
-* TODO
-* use 0 as default value for each individual test score?
-* use setdefaultsonInsert to true so that a json object
-* can be returned from the frontend
-*/
-
 const waisSchema = new Schema({
-  vc:   {type: Number, default: 0},
-  pri:  {type: Number, default: 0},
-  wmi:  {type: Number, default: 0},
-  ps:   {type: Number, default: 0},
-  fsiq: {type: Number, default: 0},
-  gai:  {type: Number, default: 0},
-  final_score: {type: Number, default: 0},
+  vc: {
+    value: { type: Number, default: 0 },
+    toStr: { type: String, default: "Verbal Comprehension"  }
+  },
+  pri:  {
+    value: { type: Number, default: 0 },
+    toStr: { type: String, default: "Perceptual Reasoning"  }
+  },
+  wmi:  {
+    value: {  type: Number, default: 0},
+    toStr: {  type: String, default: "Working Memory" }
+  },
+  ps: {
+    value: { type: Number, default: 0 },
+    toStr: { type: String, default: "Processing Speed" }
+  },
+  fsiq: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Full Scale IQ" }
+  },
+  gai:  {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "General Ability" }
+  },
+  final_score: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Final Score" }
+  },
+  toStr: {  type: String, default: "WAIS IV"  }
 });
 
 const microcogSchema = new Schema({
-  gcf:    {type: Number, default: 0},
-  gcp:    {type: Number, default: 0},
-  ips:    {type: Number, default: 0},
-  attn:   {type: Number, default: 0},
-  reas:   {type: Number, default: 0},
-  mem:    {type: Number, default: 0},
-  spat:   {type: Number, default: 0},
-  final_score: {type: Number, default: 0},
+  gcf: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "General Cognitive Functioning"  }
+  },
+  gcp: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "General Cognitive Proficiency"  }
+  },
+  ips: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Information Processing Speed"  }
+  },
+  ipa: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Information Processing Accuracy"  }
+  },
+  attn: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Attention/Mental Control"  }
+  },
+  reas: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Reasoning/Calculation"  }
+  },
+  mem: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Memory"  }
+  },
+  spat: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Spatial Processing"  }
+  },
+  rt: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Reaction Time"  }
+  },
+  final_score: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Final Score"  }
+  },
+  toStr: {  type: String, default: "MicroCog Assessment"  }
 });
 
 const wiatSchema = new Schema({
-  lc: {type: Number, default: 0},
-  oe: {type: Number, default: 0},
-  rc: {type: Number, default: 0},
-  wr: {type: Number, default: 0},
-  pd: {type: Number, default: 0},
-  orf: {type: Number, default: 0},
-  sc: {type: Number, default: 0},
-  ec: {type: Number, default: 0},
-  sp: {type: Number, default: 0},
-  mps: {type: Number, default: 0},
-  no: {type: Number, default: 0},
-  mfa: {type: Number, default: 0},
-  mfs: {type: Number, default: 0},
-  mfm: {type: Number, default: 0},
-  final_score: {type: Number, default: 0},
-})
+  lc: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Listening Comprehension"  }
+  },
+  oe: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Oral Expressing"  }
+  },
+  rc: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Reading Comprehension"  }
+  },
+  wr: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Word Reading"  }
+  },
+  orf: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Oral Reading Fluency"  }
+  },
+  sc: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Sentence Composition"  }
+  },
+  ec: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Essay Composition"  }
+  },
+  sp: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Spelling"  }
+  },
+  mps: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Math Problem Solving"  }
+  },
+  no: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Numerical Operations"  }
+  },
+  mfa: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Math Fluency Addition"  }
+  },
+  mfs: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Math Fluency Substraction"  }
+  },
+  mfm: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Math Fluency Multiplcation"  }
+  },
+  final_score: {
+    value: {  type: Number, default: 0  },
+    toStr: {  type: String, default: "Final Score"  }
+  },
+  toStr: { type: String, default: "WIAT-III"  }
+});
 
 const studentSchema = new Schema({
   fname: String,
@@ -59,7 +149,6 @@ const studentSchema = new Schema({
     wiat: wiatSchema,
   }
 });
-
 
 const Student = mongoose.model('Student', studentSchema);
 

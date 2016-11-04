@@ -24,7 +24,6 @@
         </tr>
       </table>
     </div>
-
     <div class="table-responsive">
       <table id="student-data-table" class="table table-striped">
       <thead>
@@ -75,8 +74,8 @@
           </tr>
         </tbody>
       </table>
-      <button type="button" id="save">Export Results</button>
-      <canvas id="canvas" width="870" height="500"></canvas>
+      <button type="button" id="save" class="btn btn-primary form-btn" ng-click="exportGraphAsImage()">Export Results</button>
+      <canvas id="eval-canvas" width="960" height="500" style="display:none"></canvas>
     </div>
   </div>
 </div>

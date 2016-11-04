@@ -42,7 +42,6 @@ body {
   border: 1px solid #979797; }
 
 #eval-graph {
-  min-height: 500px;
   width: 100%;
   position: relative; }
 
@@ -167,5 +166,9 @@ body {
 
 .orange {
   background-color: #e67e22; }
+
+.test-field-label {
+  background-color: #3498DB;
+  color: #F5F5F6; }
 
 /*# sourceMappingURL=main.css.map */

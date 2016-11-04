@@ -162,13 +162,13 @@ gausApp.controller('studentTestController', ($scope, $rootScope, $location, $htt
 
   function parseTestInput(testForms) {
     for (let prop in testForms) {
-      if (isNaN(testForms[prop])) {
-        if(prop !== '_id') {
-          // $rootScope.flash = {type: 'alert-danger', msg: 'Incorrect Input' };
-          flash.setMessage('Incorrect input');
-          return false;
-        }
-      }
+      // if (isNaN(testForms[prop])) {
+      //   if(prop !== '_id') {
+      //     // $rootScope.flash = {type: 'alert-danger', msg: 'Incorrect Input' };
+      //     flash.setMessage('Incorrect input');
+      //     return false;
+      //   }
+      // }
     }
     return true;
   }

@@ -1,3 +1,98 @@
+window.startGraphInit = (evaluations) => {
+  var data = init();
+  // line chart based on http://bl.ocks.org/mbostock/3883245
+  var margin = {
+          top: 20,
+          right: 20,
+          bottom: 30,
+          left: 50
+  };
+
+  var width = $("#eval-graph").width() - margin.left - margin.right; //TODO dynamically get width
+  var height = 500 - margin.top - margin.bottom;
+
+  var x = d3.scale.linear()
+      .range([0, width]);
+
+  var y = d3.scale.linear()
+      .range([height, 0]);
+
+  var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .orient("left");
+
+  var line = d3.svg.line()
+      .x(function(d) {
+          return x(d.q);
+      })
+      .y(function(d) {
+          return y(d.p);
+      });
+
+  var svg = d3.select("#eval-graph").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  x.domain(d3.extent(data, function(d) {
+      return d.q;
+  }));
+  y.domain(d3.extent(data, function(d) {
+      return d.p;
+  }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("path")
+      .datum(data)
+      .attr("fill","#26C6DA")
+      .attr("stroke", "#000")
+      .attr("d", line);
+
+  // TODO
+  // Refactor this into its own function
+  var mcScore = evaluations.microcog.final_score.value || 55;
+  var waisScore = evaluations.wais.final_score.value || 55;
+  var wiatScore = evaluations.wiat.final_score.value || 55;
+
+  //MC circle
+  svg.append("circle")
+    .attr("fill", "#c0392b" )
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("cx", setLegendLocation(mcScore, 55, 145) * width)
+    .attr("cy", height-100)
+    .attr("r", "15");
+  //WAIS circle
+  svg.append("circle")
+    .attr("fill", "#27ae60" )
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("cx", setLegendLocation(waisScore, 55, 145) * width)
+    .attr("cy", height-100)
+    .attr("r", "15");
+  //WIAT circle
+  svg.append("circle")
+    .attr("fill", "#e67e22" )
+    .attr("stroke", "black")
+    .attr("stroke-width", 2)
+    .attr("cx", setLegendLocation(wiatScore, 55, 145) * width)
+    .attr("cy", height-100)
+    .attr("r", "15");
+
+  d3.select('#save').on("click", function() {
+    generateImage();
+  });
+};
+
 const init = () => {
   //setting up empty data array
   var data = [];
@@ -51,152 +146,18 @@ const init = () => {
   return data;
 }
 
-
-// TODO
-// Does not work with partials, only runs during full refresh
-window.startGraphInit = (evaluations) => {
-  let data = init();
-  // line chart based on http://bl.ocks.org/mbostock/3883245
-  var margin = {
-          top: 20,
-          right: 20,
-          bottom: 30,
-          left: 50
-  };
-
-  var width = $("#eval-graph").width() - margin.left - margin.right; //TODO dynamically get width
-  var height = 500 - margin.top - margin.bottom;
-
-  var x = d3.scale.linear()
-      .range([0, width]);
-
-  var y = d3.scale.linear()
-      .range([height, 0]);
-
-  var xAxis = d3.svg.axis()
-      .scale(x)
-      .orient("bottom");
-
-  var yAxis = d3.svg.axis()
-      .scale(y)
-      .orient("left");
-
-  var line = d3.svg.line()
-      .x(function(d) {
-          return x(d.q);
-      })
-      .y(function(d) {
-          return y(d.p);
-      });
-
-  var svg = d3.select("#eval-graph").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  x.domain(d3.extent(data, function(d) {
-      return d.q;
-  }));
-  y.domain(d3.extent(data, function(d) {
-      return d.p;
-  }));
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-  // svg.append("g")
-  //     .attr("class", "y axis")
-  //     .call(yAxis);
-
-  svg.append("path")
-      .datum(data)
-      .attr("fill","#26C6DA")
-      .attr("stroke", "#000")
-      .attr("d", line);
-
-  // TODO
-  // Refactor this into its own function
-  let mcScore = evaluations.microcog.final_score || 55;
-  let waisScore = evaluations.wais.final_score || 55;
-  let wiatScore = evaluations.wiat.final_Score || 55;
-
-  //MC circle
-  svg.append("circle")
-    .attr("fill", "#c0392b" )
-    .attr("stroke", "black")
-    .attr("stroke-width", 2)
-    .attr("cx", setLegendLocation(mcScore, 55, 145) * width)
-    .attr("cy", height-100)
-    .attr("r", "15");
-  //WAIS circle
-  svg.append("circle")
-    .attr("fill", "#27ae60" )
-    .attr("stroke", "black")
-    .attr("stroke-width", 2)
-    .attr("cx", setLegendLocation(waisScore, 55, 145) * width)
-    .attr("cy", height-100)
-    .attr("r", "15");
-  //WIAT circle
-  svg.append("circle")
-    .attr("fill", "#e67e22" )
-    .attr("stroke", "black")
-    .attr("stroke-width", 2)
-    .attr("cx", setLegendLocation(wiatScore, 55, 145) * width)
-    .attr("cy", height-100)
-    .attr("r", "15");
-
-    console.log('Finishined making the graph');
-    $("#save").click(() => {
-      //generates the html markup
-      // containing the svg path attribs
-      var html = d3.select("svg")
+function generateImage() {
+  var html = d3.select("svg")
       .attr("version", 1.1)
       .attr("xmlns", "http://www.w3.org/2000/svg")
       .node().parentNode.innerHTML;
-      // Encodes the svg markup
-      // to a base64 String object
-      // and appaneds it to a data uri
-      var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
-      var img = '<img src="'+imgsrc+'">';
-      d3.select("#svgdataurl").html(img);
-
-      var image = new Image;
-
-      console.log(image);
-      image.onload = function() {
-        console.log('Loading');
-      };
-      image.src = imgsrc;
-      image.onload = function() {
-        context.drawImage(image, 0, 0);
-        //save and serve it as an actual filename
-        binaryblob();
-        var a = document.createElement("a");
-        a.download = "eval.png";
-        a.href = canvas.toDataURL("image/png");
-        var pngimg = '<img src="'+a.href+'">';
-        d3.select("#pngdataurl").html(pngimg);
-        a.click();
-      };
-    });
-};
-
-function binaryblob() {
-  var byteString = atob(document.querySelector("canvas").toDataURL().replace(/^data:image\/(png|jpg);base64,/, ""));
-  var ab = new ArrayBuffer(byteString.length);
-  var ia = new Uint8Array(ab);
-  for (var i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  var dataView = new DataView(ab);
-  var blob = new Blob([dataView], {type: "image/png"});
-  var DOMURL = self.URL || self.webkitURL || self;
-  var newurl = DOMURL.createObjectURL(blob);
-  var img = '<img src="'+newurl+'">';
-  d3.select("#img").html(img);
+  canvg('eval-canvas', $('svg').html());
+  var canvas = document.getElementById('eval-canvas');
+  var img = canvas.toDataURL("image/png");
+  let a = document.createElement("a");
+  a.download = "sample.png";
+  a.href = img;
+  a.click();
 }
 
 function setLegendLocation(score, min, max) {
