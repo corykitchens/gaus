@@ -1,186 +1,172 @@
+/*
+============================
+Variables / Constants Styles
+============================
+*/
 $main-content-bg: #DDE0E5;
 $branding-bg: #3498DB;
 $secondary-color: #F7CA18;
-
 $off-white: #F5F5F6;
-
 $stripe-even: #ddd;
 $stripe-odd: $off-white;
-
 $text-color: #383838;
-$grey-border: #979797;
-
-
-html,body {
-    min-height: 100%;
+$grey-border: #979797; // GLOBALS
+/*
+==============
+Globals Styles
+==============
+*/
+body,
+html {
+  min-height: 100%;
 }
-
 body {
-    background-color: $main-content-bg;
-    font-family: 'Lucida Grande', sans-serif;
-    color: $text-color;
+  background-color: $main-content-bg;
+  font-family: 'Lucida Grande', sans-serif;
+  color: $text-color;
 }
-
-.header {
-    min-height: 100px;
-    background-color: #FFF;
-    border-bottom: 1px solid $grey-border;
+/*
+======================
+Side Navigation Styles
+======================
+*/
+.sidebar-brand {
+  background-color: $branding-bg;
+  color: $off-white;
+  text-align: center;
+  text-indent: -10;
 }
-
-.branding-header{
-    background-color: $branding-bg;
-    min-height: 100px;
+.sidebar-nav > .sidebar-brand a {
+  color: $off-white;
 }
-
-.main-content {
-    background-color: $off-white;
-    border-bottom: 1px solid $grey-border;
-    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
-    margin-top: 2em;
+.sidebar-nav > .sidebar-brand a:hover {
+  color: $off-white;
+  background: none;
 }
-
-.main-content-panel-header {
-    min-height: 100px;
-    border-bottom: 1px $grey-border;
+.sidebar-nav > .sidebar-brand li {
+  color: pink;
 }
-
-
-.header-icon {
-    border-right: 1px solid $grey-border;
-    padding: 1em;
+.sidebar-nav-item a {
+  color: $off-white;
+  padding: 1em 0;
 }
-.header-icons {
-
-}
-
-.header-user {
-    background-color: red;
-}
-
-.header-user-name > p, strong {
-    padding: 1em;
-    line-height: 0.5em;
-}
-
-.student-profile-avatar {
-    width: 75%;
-    margin: 0 0 0 5em;
-    border: 1px solid $grey-border;
-}
-
+/*
+=======================
+Evaluation Graph Styles
+=======================
+*/
 #eval-graph {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
-
 #eval-graph table {
   width: 25%;
   position: absolute;
 }
-
-.nav-item > .nav-link.active {
-    border-top: 5px solid $secondary-color;
+.red {
+  background-color: #c0392b;
+}
+.green {
+  background-color: #27ae60;
+}
+.orange {
+  background-color: #e67e22;
+}
+/*
+================
+SVG Styles
+================
+*/
+.axis line,
+.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
 
-.axis path,
-    .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
-    }
 .line {
-    fill: #26C6DA;
-    stroke: steelblue;
-    stroke-width: 1.5px;
+  fill: #26C6DA;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }
-
-.search-box {
-
-    padding: 1em 0.5em 2em 0;
-    min-height: 100%;
+.color-box {
+  width: 50px;
+  height: 50px;
 }
-
-.pagination-box {
-
-}
-
-// Create mixin to inclue to DRY up code
 .circle-mc {
-    fill-opacity: 1;
-    stroke-width: 4;
-    fill: #1B5E20;
-    stroke: #1B5E20;
+  fill-opacity: 1;
+  stroke-width: 4;
+  fill: #1B5E20;
+  stroke: #1B5E20;
 }
 
 .circle-wiat {
-    fill-opacity: 1;
-    stroke-width: 4;
-    fill: #E65100;
-    stroke: #E65100;
+  fill-opacity: 1;
+  stroke-width: 4;
+  fill: #E65100;
+  stroke: #E65100;
 }
 
 .circle-wais {
-    fill-opacity: 1;
-    stroke-width: 4;
-    fill: #3F51B5;
-    stroke: #3F51B5;
+  fill-opacity: 1;
+  stroke-width: 4;
+  fill: #3F51B5;
+  stroke: #3F51B5;
+}
+/*
+================
+Assessment Styles
+================
+*/
+.assessment-field-label {
+  background-color: $branding-bg;
+  color: $off-white;
+}
+
+.assessment-field-label + input {}
+
+.assessment-div {
+  background-color: green;
+  width: 500px;
+  height: 500px;
 }
 
 .form-btn {
-  margin: 1em 0 1em 0;
+  margin: 1em 0;
+}
+.assessment-list {
+  list-style-type: none;
 }
 
-.nav-item {
-    border-right: 1px solid $grey-border;
-    width: 19%;
+.assessment-list-item {
+  padding-top: 1em;
+  padding-right: 1em;
+  padding-left: 1em;
 }
 
-.nav-item:last-child {
-    border-right: none;
+.assessment-list-item label {
+  margin-left: 0;
 }
-
-
-.sidebar-brand {
-    background-color: $branding-bg;
-    color: $off-white;
-    text-align: center;
-    text-indent: -10;
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: $off-white;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-    color: $off-white;
-    background: none;
-}
-
-.sidebar-nav > .sidebar-brand li {
-    color: pink;
-}
-
-.assessment-heading {
-    padding: 1em 0 0 0.5em;
-}
-.assessment-form {
-    padding: 1em;
-}
-
-.sidebar-nav-item a {
-    color: $off-white;
-    padding: 1em 0 1em 0;
-}
-
+/*
+========================
+Main Content Card Styles
+========================
+*/
 .card-content {
   padding: 1em;
 }
+.flash-div {
 
+}
+/*
+===================
+Profile Tabs Styles
+===================
+*/
 .tabs {
   list-style-type: none;
   border-bottom: 2px solid black;
 }
-
 .tabs li {
   display: inline-block;
   border-left: 1px solid black;
@@ -191,56 +177,9 @@ body {
   border-radius: 5px;
 }
 
-
-
-
-
-// TEST STYLES
-.test-list {
-  list-style-type: none;
-}
-.test-list-item {
-
-  padding-top: 1em;
-  padding-right: 1em;
-  padding-left: 1em;
-}
-.test-list-item label {
-
-  margin-left: 0em;
-}
-
 .fl-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.color-box {
-  width: 50px;
-  height: 50px;
-}
-
-.red {
-  background-color: #c0392b;
-}
-
-.green {
-  background-color: #27ae60;
-}
-
-.orange {
-  background-color: #e67e22;
-}
-
-.flash-div {
-}
-
-.test-field-label {
-  background-color: $branding-bg;
-  color: $off-white;
-}
-
-.test-field-label + input {
 }
