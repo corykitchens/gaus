@@ -4,9 +4,9 @@
     <h3>{{testType}} Test for {{student.fname}} {{student.lname}}</h3>
     <div class="fl-container">
       <form>
-        <ul class="test-list">
+        <ul class="assessment-list">
           <li ng-repeat="(key, value) in testForms" ng-if="$index > 1">
-              <label for="{{value.toStr}}" class="control-label test-field-label">{{value.toStr}}</label>
+              <label for="{{value.toStr}}" class="control-label assessment-field-label">{{value.toStr}}</label>
               <input type="text" ng-model="testForms[key].value" class="form-control ">
           </li>
           <button class="btn btn-primary form-btn" ng-click="submitTest()">Update</button>
