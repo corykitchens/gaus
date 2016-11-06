@@ -34,7 +34,6 @@ Side Navigation Styles
   background-color: $branding-bg;
   color: $off-white;
   text-align: center;
-  text-indent: -10;
 }
 .sidebar-nav > .sidebar-brand a {
   color: $off-white;
@@ -49,6 +48,12 @@ Side Navigation Styles
 .sidebar-nav-item a {
   color: $off-white;
   padding: 1em 0;
+}
+.branding-container {
+  // margin-top: 1em;
+}
+.branding-title {
+  width: 100%;
 }
 /*
 =======================
@@ -119,7 +124,7 @@ Assessment Styles
 ================
 */
 .assessment-container {
-  
+
 }
 .form-btn {
   margin: 1em 0;
