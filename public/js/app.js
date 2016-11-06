@@ -20,7 +20,7 @@ gausApp.config(($routeProvider) => {
     templateUrl: 'partials/student_eval.html'
   })
   .when('/student/test', {
-    templateUrl: 'partials/student_test.html'
+    templateUrl: 'partials/student_assess.html'
   })
   .when('/student/new', {
     templateUrl: 'partials/student_new.html'
@@ -130,7 +130,7 @@ gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $loca
 /**
 * @name Student Test Controller
 */
-gausApp.controller('studentTestController', ($scope, $rootScope, $location, $http, flash) => {
+gausApp.controller('studentAssessController', ($scope, $rootScope, $location, $http, flash) => {
   $scope.flash = flash;
   let urlParams = $location.search();
   if (urlParams.testtype !== null) {
