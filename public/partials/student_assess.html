@@ -1,13 +1,13 @@
-<div ng-controller="studentTestController">
+<div ng-controller="studentAssessController">
   <div class="card-content">
     <div ng-include="'partials/tabs.html'"></div>
     <h3>{{testType}} Test for {{student.fname}} {{student.lname}}</h3>
-    <div class="fl-container">
+    <div class="assessment-container">
       <form>
         <ul class="assessment-list">
-          <li ng-repeat="(key, value) in testForms" ng-if="$index > 1">
-              <label for="{{value.toStr}}" class="control-label assessment-field-label">{{value.toStr}}</label>
-              <input type="text" ng-model="testForms[key].value" class="form-control ">
+          <li ng-repeat="(key, value) in testForms" ng-if="$index > 1" class="assessment-list-item">
+              <label for="{{value.toStr}}">{{value.toStr}}</label>
+              <input type="text" ng-model="testForms[key].value" class="form-control" id="{{value.toStr}}">
           </li>
           <button class="btn btn-primary form-btn" ng-click="submitTest()">Update</button>
         </ul>

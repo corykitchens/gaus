@@ -118,32 +118,30 @@ SVG Styles
 Assessment Styles
 ================
 */
-.assessment-field-label {
-  background-color: $branding-bg;
-  color: $off-white;
+.assessment-container {
+  
 }
-
-.assessment-field-label + input {}
-
-.assessment-div {
-  background-color: green;
-  width: 500px;
-  height: 500px;
-}
-
 .form-btn {
   margin: 1em 0;
 }
 .assessment-list {
   list-style-type: none;
 }
-
-.assessment-list-item {
-  padding-top: 1em;
-  padding-right: 1em;
-  padding-left: 1em;
+.assessment-list li:nth-child(odd) {
+  background-color: $stripe-odd;
 }
 
+.assessment-list li:nth-child(even) {
+  background-color: $stripe-even;
+}
+.assessment-list-item {
+  padding: 0.2em 0 0 0;
+  margin: 0 0 1em 0;
+  border-radius: 5px;
+}
+.assessment-list-item label {
+  padding: 0 0 0 1em;
+}
 .assessment-list-item label {
   margin-left: 0;
 }
@@ -175,11 +173,4 @@ Profile Tabs Styles
   padding: 1em;
   margin-right: 2em;
   border-radius: 5px;
-}
-
-.fl-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
