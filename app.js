@@ -15,7 +15,8 @@ const students = require('./routes/students');
 
 const app = express();
 // connect to db
-mongoose.connect('mongodb://localhost/gaus');
+let db_connection_str = process.env.MONGODB_URI || 'mongodb://localhost/gaus';
+mongoose.connect(db_connection_str);
 // view engine setup
 app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
