@@ -68,6 +68,11 @@ Evaluation Graph Styles
   width: 25%;
   position: absolute;
 }
+
+.eval-graph-table {
+  background-color: $off-white;
+  border: 1px solid $grey-border;
+}
 .red {
   background-color: #c0392b;
 }
@@ -77,6 +82,8 @@ Evaluation Graph Styles
 .orange {
   background-color: #e67e22;
 }
+
+
 /*
 ================
 SVG Styles

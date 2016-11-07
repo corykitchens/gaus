@@ -3,26 +3,30 @@
     <div ng-include="'partials/tabs.html'"></div>
     <h2>Evaluation Results for {{student.fname}} {{student.lname}}</h2>
     <div id="eval-graph">
-      <table class="table">
-        <thead class="thead-inverse">
+      <div id="eval-legend-container">
+        <div xmlns="http://www.w3.org/1999/xhtml" style='font-size:14px'>
+          <table class="table eval-graph-table" id="eval-legend">
+            <thead class="thead-inverse">
+            <tr>
+              <th>Test Type</th>
+              <th>Color</th>
+            </tr>
+          </thead>
           <tr>
-            <th>Test Type</th>
-            <th>Color</th>
+            <td>MicroCog</td>
+            <td><div class="color-box red"></div></td>
           </tr>
-        </thead>
-        <tr>
-          <td>MicroCog</td>
-          <td><div class="color-box red"></div></td>
-        </tr>
-        <tr>
-          <td>WAIS-III</td>
-          <td><div class="color-box green"></div></td>
-        </tr>
-        <tr>
-          <td>WIAT-IV</td>
-          <td><div class="color-box orange"></div></td>
-        </tr>
-      </table>
+          <tr>
+            <td>WAIS-III</td>
+            <td><div class="color-box green"></div></td>
+          </tr>
+          <tr>
+            <td>WIAT-IV</td>
+            <td><div class="color-box orange"></div></td>
+          </tr>
+          </table>
+        </div>
+      </div>
     </div>
     <div class="table-responsive">
       <table id="student-data-table" class="table table-striped">
