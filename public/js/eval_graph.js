@@ -10,7 +10,6 @@ window.startGraphInit = (evaluations) => {
 
   var width = $("#eval-graph").width() - margin.left - margin.right; //TODO dynamically get width
   var height = 500 - margin.top - margin.bottom;
-
   var x = d3.scale.linear()
       .range([0, width]);
 
@@ -151,6 +150,7 @@ const init = () => {
 }
 
 function generateImage() {
+
   var html = d3.select("svg")
       .attr("version", 1.1)
       .attr("xmlns", "http://www.w3.org/2000/svg")
@@ -158,6 +158,7 @@ function generateImage() {
   canvg('eval-canvas', $('svg').html());
   var canvas = document.getElementById('eval-canvas');
   var img = canvas.toDataURL("image/png");
+  setTable(canvas);
   let a = document.createElement("a");
   a.download = "sample.png";
   a.href = img;
@@ -166,4 +167,25 @@ function generateImage() {
 
 function setLegendLocation(score, min, max) {
   return (((score - min) / (max-min)) * 100) * 0.01;
+}
+
+function setTable(canvas) {
+  var ctx = canvas.getContext("2d");
+  var tbl = $("#eval-legend-container").html();
+  var data = "<svg xmlns='http://www.w3.org/2000/svg' width='500' height='500'>" +
+                        "<foreignObject width='100%' height='100%'>" + tbl +
+                        "</foreignObject>" +
+                        "</svg>";
+  var DOMURL = self.URL || self.webkitURL || self;
+  var img = new Image();
+  var svg = new Blob([data], {
+      type: "image/svg+xml;charset=utf-8"
+  });
+  var url = DOMURL.createObjectURL(svg);
+  img.src = url;
+  img.onload = function() {
+      console.log('On load');
+      ctx.drawImage(img, 0, 0);
+      DOMURL.revokeObjectURL(url);
+  };
 }
