@@ -5,7 +5,7 @@
   "private": true,
   "author" : "Cory Kitchens",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
