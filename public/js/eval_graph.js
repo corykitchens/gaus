@@ -1,4 +1,4 @@
-window.startGraphInit = (evaluations) => {
+window.startGraphInit = (evaluations, studentFullName) => {
   var data = init();
   // line chart based on http://bl.ocks.org/mbostock/3883245
   var margin = {
@@ -92,7 +92,7 @@ window.startGraphInit = (evaluations) => {
     .attr("width", 5);
 
   d3.select('#save').on("click", function() {
-    generateImage();
+    generateImage(studentFullName);
   });
 };
 
@@ -149,7 +149,7 @@ const init = () => {
   return data;
 }
 
-function generateImage() {
+function generateImage(studentFullName) {
 
   var html = d3.select("svg")
       .attr("version", 1.1)
@@ -160,7 +160,11 @@ function generateImage() {
   var img = canvas.toDataURL("image/png");
   setTable(canvas);
   let a = document.createElement("a");
-  a.download = "sample.png";
+  if (studentFullName.length === 0) {
+    a.download = "sample.png";
+  } else {
+    a.download = studentFullName + ".png";
+  }
   a.href = img;
   a.click();
 }

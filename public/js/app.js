@@ -190,7 +190,8 @@ gausApp.controller('studentEvalController', ($scope, $rootScope, $location, $htt
   } else {
     $http.get('/api/students/' + student_id).then((res) => {
       $scope.student = res.data.student;
-      window.startGraphInit($scope.student.evaluations);
+      let studentFullName = "" +($scope.student.fname[0]+$scope.student.lname).toLowerCase();
+      window.startGraphInit($scope.student.evaluations, studentFullName);
     });
   }
 
