@@ -132,6 +132,7 @@ gausApp.controller('studentProfileController', ($scope, $rootScope, $http, $loca
 */
 gausApp.controller('studentAssessController', ($scope, $rootScope, $location, $http, flash) => {
   $scope.flash = flash;
+
   let urlParams = $location.search();
   if (urlParams.testtype !== null) {
     $scope.testType = urlParams.testtype.toUpperCase();
@@ -155,6 +156,7 @@ gausApp.controller('studentAssessController', ($scope, $rootScope, $location, $h
         if (res.status === 200) {
           // $rootScope.flash = {type: "alert-success", msg: "Test saved succcesfully" };
           flash.setMessage('Test Saved Successfully');
+          alert('Evaluation Scores Saved');
         }
       });
     }
@@ -221,5 +223,4 @@ gausApp.factory('flash', ($rootScope) => {
       queue.push(message);
     },
   };
-
 });
